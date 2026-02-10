@@ -17,7 +17,7 @@ export async function getMe(
     res.status(200).json(user);
   } catch (error) {
     res.status(500);
-    next();
+    next(error);
     // we will not define error manually anymore we have created a errorHandler function for it and we are calling it
   }
 }

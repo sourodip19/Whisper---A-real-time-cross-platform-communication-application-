@@ -23,8 +23,8 @@ export const protectRoute = [
       req.userId = user._id.toString();
       next();
     } catch (error) {
-      console.log('Error in the protechRoute(auth.ts) middleware');
-      return res.status(500).json({ message: 'Internal Server Error' });
+      res.status(500);
+      next(error);
     }
   },
 ];
