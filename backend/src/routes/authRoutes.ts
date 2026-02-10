@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { protectRoute } from '../middleware/auth';
-import { getMe } from '../controllers/authController';
+import { authCallBack, getMe } from '../controllers/authController';
 
 const authRouter = Router();
 
