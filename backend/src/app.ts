@@ -13,10 +13,10 @@ app.use(express.json());
 app.use(clerkMiddleware());
 //Middleware that integrates Clerk authentication into your Express application. It checks the request's cookies and headers for a session JWT and, if found, attaches the Auth object to the request object under the auth key.
 
-app.use('api/auth', authRoutes);
-app.use('api/messages', messageRoutes);
-app.use('api/chats', chatRoutes);
-app.use('api/users', userRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/chats', chatRoutes);
+app.use('/api/users', userRoutes);
 
 // errorHandler must come after all the routes and middlewares so they can catch the errors passed with next(err) or thrown inside async handlers.
 app.use(errorHandler);
