@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { ClerkProvider } from '@clerk/clerk-expo';
 import '../global.css';
 import {
   QueryClient,
@@ -9,8 +10,17 @@ import {
 const queryClient = new QueryClient();
 export default function RootLayout() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Stack />
-    </QueryClientProvider>
+    <ClerkProvider>
+      <QueryClientProvider client={queryClient}>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+          <Stack.Screen name="(auth)" options={{ animation: 'fade' }} />
+        </Stack>
+      </QueryClientProvider>
+    </ClerkProvider>
   );
 }
