@@ -13,6 +13,7 @@ import { useAuthSocial } from '../hooks/useSocialAuth';
 const { width, height } = Dimensions.get('window');
 const AuthScreen = () => {
   const { handleSocialAuth, loadingStrategy } = useAuthSocial();
+  const isLoading = loadingStrategy !== null;
   return (
     <View className="flex-1 bg-surface-dark">
       <View className="absolute inset-0 overflow-hidden "></View>
@@ -48,10 +49,10 @@ const AuthScreen = () => {
             {/*Google Button*/}
             <Pressable
               className="flex-1 flex-row items-center justify-center gap-2 bg-white py-4 rounded-2xl active:scale-[0.97]"
-              onPress={() => {
-                handleSocialAuth('oauth_google');
-              }}
-              disabled={loadingStrategy === 'oauth_google'}
+              onPress={() => !isLoading && handleSocialAuth('oauth_google')}
+              disabled={isLoading}
+              accessibilityRole="button"
+              accessibilityLabel="Continue with Google"
             >
               {loadingStrategy === 'oauth_google' ? (
                 <ActivityIndicator size={'small'} color={'#1A1A1A'} />
@@ -71,10 +72,10 @@ const AuthScreen = () => {
             {/*Apple Button*/}
             <Pressable
               className="flex-1 flex-row items-center justify-center gap-2 bg-white/10 py-4 rounded-2xl active:scale-[0.97] border border-white/20"
-              onPress={() => {
-                handleSocialAuth('oauth_apple');
-              }}
-              disabled={loadingStrategy === 'oauth_apple'}
+              onPress={() => !isLoading && handleSocialAuth('oauth_apple')}
+              disabled={isLoading}
+              accessibilityRole="button"
+              accessibilityLabel="Continue with Apple"
             >
               {loadingStrategy === 'oauth_apple' ? (
                 <ActivityIndicator size={'small'} color={'#FFFFFF'} />
